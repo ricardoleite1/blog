@@ -1,3 +1,4 @@
+import { SpinLoader } from "@/components/SpinLoader";
 import { postRepository } from "@/repositories/post/json-post-repopsitory";
 
 export default async function Home() {
@@ -5,6 +6,8 @@ export default async function Home() {
 
   return (
     <div>
+      <SpinLoader />
+
       {posts.map((post) => (
         <div key={post.id} className="p-4 border-b border-gray-200">
           <h2 className="text-xl font-bold">{post.title}</h2>

@@ -25,4 +25,4 @@ class JsonPostRepository implements PostRepository {
   }
 }
 
-export const postRepository = new JsonPostRepository();
+export const postRepository: PostRepository = new JsonPostRepository();
