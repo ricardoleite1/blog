@@ -1,9 +1,13 @@
+import { findAllPublic } from "@/lib/post/queries";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
+import { formatDateTime } from "@/utils/format-datetime";
 
-export function FeaturedPost() {
-  const slug = "titulo-do-post"
-  const postLink = `/post/${slug}`
+export async function FeaturedPost() {
+  const posts = await findAllPublic();
+  const post = posts[0];
+  const postLink = `/post/${post.slug}`;
+
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16 group">
@@ -11,26 +15,23 @@ export function FeaturedPost() {
         linkProps={{ href: postLink }}
         imageProps={{
           priority: true,
-          src: "/images/bryen_0.png",
+          src: post.coverImageUrl,
           width: 1200,
           height: 500,
-          alt: "Imagem do post",
+          alt: post.title,
         }}
       />
       <div className="flex flex-col gap-4 sm:justify-center">
-        <time className="text-slate-400 text-sm" dateTime="2025-04-20">
-          20/04/2025 10:00
+        <time className="text-slate-400 text-sm" dateTime={post.createdAt}>
+          {formatDateTime(post.createdAt)}
         </time>
 
         <PostHeading as="h1" href={postLink}>
-          Título do post
+          {post.title}
         </PostHeading>
 
         <p>
-          Lorem ipsum dolor sit, Necessitatibus, illo impedit eligendi mollitia
-          assumenda dolorum obcaecati commodi enim ullam ducimus, velit fugiat
-          ea esse corrupti error, sunt illum optio alias maiores. Ullam
-          voluptatum magni perspiciatis corporis aliquid optio.
+          {post.excerpt}
         </p>
       </div>
     </section>
