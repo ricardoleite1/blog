@@ -8,7 +8,6 @@ export async function FeaturedPost() {
   const post = posts[0];
   const postLink = `/post/${post.slug}`;
 
-
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16 group">
       <PostCoverImage
