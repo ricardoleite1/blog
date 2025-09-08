@@ -6,7 +6,10 @@ import { resolve } from "path";
 const ROOT_DIR = process.cwd();
 const JSON_POSTS_FILE_PATH = resolve(ROOT_DIR, "src", "db", "posts.json");
 const SIMULATE_WAIT_IN_MS = 0;
-class JsonPostRepository implements PostRepository {
+export class JsonPostRepository implements PostRepository {
+  findAllPublicCached(): Promise<PostModel[]> {
+    throw new Error("Method not implemented.");
+  }
   private async simulateWait() {
     if (SIMULATE_WAIT_IN_MS <=0) return;
 
@@ -28,6 +31,13 @@ class JsonPostRepository implements PostRepository {
   async findById(id: string): Promise<PostModel> {
     const posts = await this.findAllPublic();
     const filteredPost = posts.find((post) => post.id === id);
+    if (!filteredPost) throw new Error("Post not found");
+    return filteredPost;
+  }
+
+  async findBySlug(slug: string): Promise<PostModel> {
+    const posts = await this.findAllPublic();
+    const filteredPost = posts.find((post) => post.slug === slug);
     if (!filteredPost) throw new Error("Post not found");
     return filteredPost;
   }
