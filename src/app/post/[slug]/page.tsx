@@ -10,8 +10,6 @@ type PostProps = {
 export default async function Post({ params }: PostProps) {
   const { slug } = await params;
 
-  // const post = await findPostBySlugCached(slug);
-
   return (
     <Suspense fallback={<SpinLoader />}>
       <SinglePost slug={slug} />
