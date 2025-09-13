@@ -1,7 +1,9 @@
+"use client"
+
 import { ErrorMessage } from "@/components/ErrorMessage";
 
 export default function NotFound() {
   return (
-    <ErrorMessage type="404" message="A página acessada não foi encontrada."/>
+    <ErrorMessage type="500" message="Ocorreu um erro desconhecido."/>
   );
 }

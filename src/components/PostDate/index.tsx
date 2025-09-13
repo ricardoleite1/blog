@@ -7,7 +7,7 @@ type PostDateProps = {
 export function PostDate({ date }: PostDateProps) {
   return (
     <time
-      className="text-slate-400 text-sm"
+      className="text-sm"
       dateTime={formatDateTime(date)}
     >
       {formatDateTime(date)}
