@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1757787126854,
+      "tag": "0000_organic_masked_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1757787888106,
+      "tag": "0001_freezing_victor_mancha",
+      "breakpoints": true
+    }
+  ]
+}
