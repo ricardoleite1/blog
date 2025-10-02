@@ -5,10 +5,11 @@ import { resolve } from "path";
 
 const ROOT_DIR = process.cwd();
 const JSON_POSTS_FILE_PATH = resolve(ROOT_DIR, "src", "db", "posts.json");
+console.log(JSON_POSTS_FILE_PATH);
 const SIMULATE_WAIT_IN_MS = 0;
 export class JsonPostRepository implements PostRepository {
   private async simulateWait() {
-    if (SIMULATE_WAIT_IN_MS <=0) return;
+    if (SIMULATE_WAIT_IN_MS <= 0) return;
 
     await new Promise((resolve) => setTimeout(resolve, SIMULATE_WAIT_IN_MS));
   }

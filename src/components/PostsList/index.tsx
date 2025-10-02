@@ -1,9 +1,10 @@
+import { postRepository } from "@/repositories/post";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
-import { findAllPublicCached } from "@/lib/post/queries";
 
 export async function PostsList() {
-  const posts = (await findAllPublicCached()).slice(1);
+  const posts = await postRepository.findAll();
+  console.log("posts", posts);
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -31,7 +32,6 @@ export async function PostsList() {
               excerpt={post.excerpt}
               postLink={postLink}
             />
-
           </div>
         );
       })}

@@ -1,10 +1,11 @@
-import { findAllPublicCached } from "@/lib/post/queries";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
 import { formatDateTime } from "@/utils/format-datetime";
+import { findAllPublicCached } from "@/lib/post/queries/public";
 
 export async function FeaturedPost() {
   const posts = await findAllPublicCached();
+  if (!posts) return null;
   const post = posts[0];
   const postLink = `/post/${post.slug}`;
 
@@ -29,9 +30,7 @@ export async function FeaturedPost() {
           {post.title}
         </PostHeading>
 
-        <p>
-          {post.excerpt}
-        </p>
+        <p>{post.excerpt}</p>
       </div>
     </section>
   );
