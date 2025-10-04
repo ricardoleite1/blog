@@ -1,3 +1,5 @@
+"use server";
+
 import { postRepository } from "@/repositories/post";
 import { cache } from "react";
 

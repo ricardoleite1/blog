@@ -45,6 +45,11 @@ export class JsonPostRepository implements PostRepository {
     if (!filteredPost) throw new Error("Post not found");
     return filteredPost;
   }
+
+  async delete(id: string): Promise<void> {
+    console.log(id);
+    // implementation
+  }
 }
 
 export const postRepository: PostRepository = new JsonPostRepository();
