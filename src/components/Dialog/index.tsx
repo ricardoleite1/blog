@@ -1,4 +1,5 @@
 import { CheckIcon, CircleXIcon } from "lucide-react";
+import { Button } from "../Button";
 
 type DialogProps = {
   title: string;
@@ -38,22 +39,21 @@ export function Dialog({
         </h3>
         <p id="dialog-text">{message}</p>
         <div className="flex items-center justify-around mt-4">
-          <button
-            onClick={handleCancel}
+          <Button
             autoFocus
-            className="disabled:bg-slate-300 disabled:text-slate-100 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-slate-200 py-2 px-4 transition hover:bg-slate-300 cursor-pointer rounded"
-            disabled={disabled}
+            variant="ghost"
+            onClick={handleCancel}
+            icon={<CircleXIcon size={18} />}
           >
-            <CircleXIcon size={18} /> Cancelar
-          </button>
-          <button
+            Cancelar
+          </Button>
+          <Button
+            variant="default"
             onClick={onConfirm}
-            className="disabled:bg-slate-300 disabled:text-slate-100 disabled:cursor-not-allowed flex items-center justify-center gap-2 bg-green-300 py-2 px-4 transition hover:bg-green-400 cursor-pointer rounded"
-            disabled={disabled}
+            icon={<CheckIcon size={18} />}
           >
-            <CheckIcon size={18} />
             Confirmar
-          </button>
+          </Button>
         </div>
       </div>
     </div>
