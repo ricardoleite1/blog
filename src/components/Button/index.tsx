@@ -1,11 +1,16 @@
 type ButtonVariants = "default" | "ghost" | "danger";
 
 type ButtonProps = {
-  variant: ButtonVariants;
+  variant?: ButtonVariants;
   icon?: React.ReactNode;
 } & React.ComponentProps<"button">;
 
-export function Button({ children, icon, ...props }: ButtonProps) {
+export function Button({
+  children,
+  icon,
+  variant = "default",
+  ...props
+}: ButtonProps) {
   const buttonVariants = {
     default: "bg-slate-500 text-white",
     ghost: "bg-slate-300 text-white",
@@ -14,11 +19,11 @@ export function Button({ children, icon, ...props }: ButtonProps) {
 
   return (
     <button
-      className={
-        buttonVariants[props.variant] +
-        " flex items-center gap-2 py-2 px-3 rounded disabled:bg-slate-200 disabled:cursor-not-allowed disabled:text-slate-400 max-w-[80px]"
-      }
       {...props}
+      className={
+        buttonVariants[variant] +
+        " flex items-center gap-2 py-2 px-3 rounded disabled:bg-slate-200 disabled:cursor-not-allowed disabled:text-slate-400 justify-center"
+      }
     >
       {icon && <span>{icon}</span>}
       {children}

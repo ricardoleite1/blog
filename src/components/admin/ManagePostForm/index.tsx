@@ -5,6 +5,7 @@ import { InputCheckbox } from "@/components/InputCheckbox";
 import { InputText } from "@/components/InputText";
 import { MarkdownEditor } from "@/components/MarkdownEditor";
 import { useState } from "react";
+import { ImageUploader } from "../ImageUploader";
 
 export function ManagePostForm() {
   const [content, setContent] = useState("");
@@ -15,6 +16,7 @@ export function ManagePostForm() {
       <InputText labelText="Nome" />
       <InputCheckbox labelText="Nome" />
       <InputCheckbox labelText="Nome" />
+      <ImageUploader />
       <MarkdownEditor
         labelText="Conteúdo"
         setValueAction={setContent}
