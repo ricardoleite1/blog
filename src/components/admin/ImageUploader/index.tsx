@@ -1,12 +1,14 @@
 "use client";
 
+import { uploadImageAction } from "@/actions/upload-image-actions";
 import { Button } from "@/components/Button";
 import { ImageUpIcon } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useTransition } from "react";
 import { toast } from "react-toastify";
 
 export function ImageUploader() {
   const input = useRef<HTMLInputElement>(null);
+  const [isUploading, startTransition] = useTransition(false);
 
   const handleUpload = () => {
     if (!input.current) return;
@@ -18,8 +20,8 @@ export function ImageUploader() {
     const file = event.target.files[0];
     const fileSize = Math.round(file.size / 1000);
 
-    if (fileSize >= 264) {
-      toast.error("Arquivo é muito grande");
+    if (fileSize >= 1000) {
+      toast.error("O arquivo é muito grande");
       event.target.value = "";
       return;
     }
@@ -27,7 +29,16 @@ export function ImageUploader() {
     const formData = new FormData();
     formData.append("file", file);
 
-    // Handle form data submission here
+    startTransition(async () => {
+      const result = await uploadImageAction(formData);
+
+      if (result.error) {
+        toast.error("Erro ao enviar imagem");
+        return;
+      }
+
+      toast.success(result.url);
+    });
   };
 
   return (
